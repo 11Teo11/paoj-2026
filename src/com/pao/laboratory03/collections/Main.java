@@ -1,5 +1,7 @@
 package com.pao.laboratory03.collections;
 
+import java.util.*;
+
 /**
  * Exercițiul 1 — Colecții: HashMap și TreeMap
  *
@@ -51,6 +53,44 @@ package com.pao.laboratory03.collections;
 public class Main {
     public static void main(String[] args) {
         // TODO: implementează cele 3 părți de mai sus
+        // Exercitiul 1
+        // Partea A
+        String[] words = {"java", "python", "java", "c++", "python", "java", "rust", "c++", "go"};
+        Map<String,Integer> frecventa = new HashMap<>();
+        for (String w : words)
+            frecventa.put(w, frecventa.getOrDefault(w, 0) + 1);
+        System.out.println("===== Exercitiul 1 ======");
+        System.out.println("=== Partea A ===");
+
+        System.out.println("\nFrecventa: " + frecventa);
+
+        System.out.println("\nVerificare cheia 'rust': " + frecventa.containsKey("rust"));
+
+        System.out.println("\nAfisare chei: " + frecventa.keySet());
+
+        System.out.println("\nAfisare valori: " + frecventa.values());
+
+        System.out.println("\nAfisare cheie -> valoare");
+        for(Map.Entry<String, Integer> entry: frecventa.entrySet())
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+
+        System.out.println("\n===== Partea B ======");
+
+        TreeMap<String, Integer> sorted = new TreeMap<>(frecventa);
+        System.out.println("\nTreeMap: " + sorted);
+        System.out.println("Prima cheie: " + sorted.firstKey());
+        System.out.println("Ultima cheie: " + sorted.lastKey());
+
+        System.out.println("\n===== Partea C ======");
+        HashMap<String, List<String>> materii = new HashMap<>();
+        // Exemplu: "PAOJ" -> ["Ana", "Mihai", "Ion"], "BD" -> ["Ana", "Elena"]
+        materii.put("PAOJ", new ArrayList<>(Arrays.asList("Ana", "Mihai", "Ion")));
+        materii.put("BD", new ArrayList<>(Arrays.asList("Ana", "Elena")));
+
+        System.out.println("PAOJ: " + materii.get("PAOJ"));
+
+        materii.get("BD").add("George");
+        System.out.println("BD (actualizat): " + materii.get("BD"));
     }
 }
 
