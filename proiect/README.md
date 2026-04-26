@@ -24,11 +24,14 @@
 17. Cauta un utilizator dupa nume ( afisand detaliile lui)
 18. Cauta un curs dupa nume ( afisand lectiile quizurile si cine il preda)
 
-? schimba date? nume prenume -> ca un fel de editare profil
+19. Sterge curs
+20. Sterge lectie
+21. Sterge quiz
 
 
 
 1.2 Lista cu cel puțin 8 tipuri de obiecte din domeniu
+
 1. Utilizator
 2. Cursant
 3. Instructor
@@ -38,6 +41,3 @@
 7. Intrebare
 8. Varianta
 9. Rezultat
-
-// intrebari:
-1. este nevoie sa punem de acum un primary key in fiecare clasa?
