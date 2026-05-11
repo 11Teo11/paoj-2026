@@ -41,7 +41,7 @@ public class Main {
             String tip = elementeComanda[0];
             String numeCautat = elementeComanda[1];
 
-            // cautam studentul cerut
+
             Student original = null;
             for (Student s : studenti) {
                 if (s.getNume().equals(numeCautat)) {

@@ -15,25 +15,16 @@ public class Student implements Cloneable {
         return nume;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setNume(String nume) { this.nume = nume;}
+    public void setAdresa(Adresa adresa) { this.adresa = adresa; }
+    public void setVarsta(int varsta) {
+        this.varsta = varsta;
     }
 
     public int getVarsta() {
         return varsta;
     }
-
-    public void setVarsta(int varsta) {
-        this.varsta = varsta;
-    }
-
-    public Adresa getAdresa() {
-        return adresa;
-    }
-
-    public void setAdresa(Adresa adresa) {
-        this.adresa = adresa;
-    }
+    public Adresa getAdresa() { return adresa; }
 
     public Student shallowClone() throws CloneNotSupportedException {
         return (Student) super.clone();

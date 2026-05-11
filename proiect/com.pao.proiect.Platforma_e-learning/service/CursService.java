@@ -105,7 +105,6 @@ public class CursService {
             throw new EntitateNegasitaException("Cursantul cu email-ul " + email + " nu a fost gasit.");
         }
         for (Curs curs : c.getCursuriInscrise()) {
-            // aici trebuia detaliul despre profesor
             System.out.println("- " + curs.getNume() + " (profesor: " +
                     curs.getProfesor().getNume() + " " +
                     curs.getProfesor().getPrenume() + ")");
@@ -120,7 +119,6 @@ public class CursService {
         System.out.println("\n--- Cursurile predate de: " + p.getNume() + " " + p.getPrenume() + " ---");
         for (Curs curs : cursuri.values()) {
             if (curs.getProfesor().getEmail().equals(email)) {
-                // aici e suficient doar numele cursului
                 System.out.println("- " + curs.getNume());
             }
         }
