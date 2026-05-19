@@ -12,8 +12,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class Main {
+
     private static final Set<String> HIGH_RISK_COUNTRIES =
             new HashSet<>(Arrays.asList("RU", "NG", "IR", "KP", "SY"));
 
@@ -29,6 +31,20 @@ public class Main {
 
     private static final Comparator<Transaction> BY_RISK_DESC_THEN_ID_ASC =
             Comparator.comparingInt(Main::riskScore).reversed().thenComparingInt(t -> t.id);
+
+    // Partea A — reguli elementare
+    private static final Predicate<Transaction> amountOverThreshold =
+            tx -> tx.amount >= 1000;
+
+    private static final Predicate<Transaction> countryInRisk =
+            tx -> HIGH_RISK_COUNTRIES.contains(tx.country);
+
+    private static final Predicate<Transaction> channelSuspicious =
+            tx -> Set.of("WEB", "APP", "CRYPTO").contains(tx.channel);
+
+    // Partea B — compozitie
+    private static final Predicate<Transaction> flaggedRule =
+            amountOverThreshold.or(countryInRisk).or(channelSuspicious);
 
     public static void main(String[] args) {
         try {
