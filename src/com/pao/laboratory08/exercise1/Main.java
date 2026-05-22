@@ -4,19 +4,68 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    // Calea către fișierul cu date — relativă la rădăcina proiectului
     private static final String FILE_PATH = "src/com/pao/laboratory08/tests/studenti.txt";
 
     public static void main(String[] args) throws Exception {
-        // TODO: Implementează conform Readme.md
-        //
-        // 1. Citește studenții din FILE_PATH cu BufferedReader
-        // 2. Citește comanda din stdin: PRINT, SHALLOW <nume> sau DEEP <nume>
-        // 3. Execută comanda:
-        //    - PRINT → afișează toți studenții
-        //    - SHALLOW <nume> → shallow clone + modifică orașul clonei la "MODIFICAT" + afișează
-        //    - DEEP <nume> → deep clone + modifică orașul clonei la "MODIFICAT" + afișează
+        List<Student> studenti = new ArrayList<>();
 
-        System.out.println("TODO: implementează exercițiul 1");
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
+            String linie;
+            while ((linie = br.readLine()) != null) {
+                String[] parti = linie.split(",");
+                if (parti.length == 4) {
+                    String nume = parti[0];
+                    int varsta = Integer.parseInt(parti[1]);
+                    String oras = parti[2];
+                    String strada = parti[3];
+
+                    Adresa adresa = new Adresa(oras, strada);
+                    Student student = new Student(nume, varsta, adresa);
+                    studenti.add(student);
+                }
+            }
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        if (!scanner.hasNextLine())
+            return;
+
+        String comanda = scanner.nextLine().trim();
+
+        if (comanda.equals("PRINT")) {
+            for (Student s : studenti) {
+                System.out.println(s);
+            }
+        } else if (comanda.startsWith("SHALLOW") || comanda.startsWith("DEEP")) {
+            String[] elementeComanda = comanda.split(" ", 2);
+            String tip = elementeComanda[0];
+            String numeCautat = elementeComanda[1];
+
+
+            Student original = null;
+            for (Student s : studenti) {
+                if (s.getNume().equals(numeCautat)) {
+                    original = s;
+                    break;
+                }
+            }
+
+            if (original != null) {
+                Student clona;
+
+                if (tip.equals("SHALLOW")) {
+                    clona = original.shallowClone();
+                } else {
+                    clona = original.deepClone();
+                }
+
+                clona.getAdresa().setOras("MODIFICAT");
+
+                System.out.println("Original: " + original);
+                System.out.println("Clona: " + clona);
+            }
+        }
+
+        scanner.close();
     }
 }
