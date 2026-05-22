@@ -1,9 +1,8 @@
-package service;
+package com.pao.project.Platforma_e_learning.service;
 
-import exception.DateCursInvalide;
-import exception.DateUtilizatorInvalide;
-import exception.EntitateNegasitaException;
-import model.*;
+import com.pao.project.Platforma_e_learning.exception.DateCursInvalide;
+import com.pao.project.Platforma_e_learning.exception.EntitateNegasitaException;
+import com.pao.project.Platforma_e_learning.model.*;
 
 import java.util.*;
 

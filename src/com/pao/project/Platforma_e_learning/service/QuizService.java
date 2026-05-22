@@ -1,7 +1,7 @@
-package service;
+package com.pao.project.Platforma_e_learning.service;
 
-import exception.*;
-import model.*;
+import com.pao.project.Platforma_e_learning.exception.*;
+import com.pao.project.Platforma_e_learning.model.*;
 
 import java.time.LocalDate;
 import java.util.HashMap;

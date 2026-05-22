@@ -1,4 +1,4 @@
-package model;
+package com.pao.project.Platforma_e_learning.model;
 
 public enum NivelDificultate {
     USOR("potrivit pentru incepatori absoluti"),

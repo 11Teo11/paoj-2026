@@ -1,8 +1,8 @@
-package util;
+package com.pao.project.Platforma_e_learning.util;
 
-import exception.*;
-import model.*;
-import service.*;
+import com.pao.project.Platforma_e_learning.exception.*;
+import com.pao.project.Platforma_e_learning.model.*;
+import com.pao.project.Platforma_e_learning.service.*;
 
 import java.time.LocalDate;
 

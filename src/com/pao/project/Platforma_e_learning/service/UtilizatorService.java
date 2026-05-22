@@ -1,11 +1,11 @@
-package service;
+package com.pao.project.Platforma_e_learning.service;
 
-import exception.DateUtilizatorInvalide;
-import exception.EntitateNegasitaException;
-import model.Cursant;
-import model.Profesor;
-import model.TipUtilizator;
-import model.Utilizator;
+import com.pao.project.Platforma_e_learning.exception.DateUtilizatorInvalide;
+import com.pao.project.Platforma_e_learning.exception.EntitateNegasitaException;
+import com.pao.project.Platforma_e_learning.model.Cursant;
+import com.pao.project.Platforma_e_learning.model.Profesor;
+import com.pao.project.Platforma_e_learning.model.TipUtilizator;
+import com.pao.project.Platforma_e_learning.model.Utilizator;
 
 import java.util.*;
 
@@ -36,11 +36,11 @@ public class UtilizatorService {
             case PROFESOR -> {
                 if (departament == null || departament.isBlank())
                     throw new DateUtilizatorInvalide("Departamentul este obligatoriu pentru un profesor.");
-                utilizator = new model.Profesor(prenume, nume, email, departament);
+                utilizator = new Profesor(prenume, nume, email, departament);
                 System.out.println("Succes: Profesorul " + prenume + " " + nume + " a fost inregistrat cu succes.");
             }
             case CURSANT -> {
-                utilizator = new model.Cursant(prenume, nume, email);
+                utilizator = new Cursant(prenume, nume, email);
                 System.out.println("Succes: Cursantul " + prenume + " " + nume + " a fost inregistrat cu succes.");
             }
             default -> throw new DateUtilizatorInvalide("Tip de utilizator necunoscut.");

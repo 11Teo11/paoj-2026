@@ -1,10 +1,12 @@
-import model.Curs;
-import model.NivelDificultate;
-import model.TipUtilizator;
-import service.CursService;
-import service.QuizService;
-import service.UtilizatorService;
-import util.DataSeeder;
+package com.pao.project.Platforma_e_learning;
+
+import com.pao.project.Platforma_e_learning.model.Curs;
+import com.pao.project.Platforma_e_learning.model.NivelDificultate;
+import com.pao.project.Platforma_e_learning.model.TipUtilizator;
+import com.pao.project.Platforma_e_learning.service.CursService;
+import com.pao.project.Platforma_e_learning.service.QuizService;
+import com.pao.project.Platforma_e_learning.service.UtilizatorService;
+import com.pao.project.Platforma_e_learning.util.DataSeeder;
 
 import java.time.LocalDate;
 import java.util.Scanner;
