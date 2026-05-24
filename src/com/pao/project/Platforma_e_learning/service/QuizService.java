@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class QuizService {
     private static QuizService instance;
-    private final Map<String, Quiz> quizuri;
+    private final Map<Long, Quiz> quizuri;
 
     private QuizService(){
         this.quizuri = new HashMap<>();
@@ -44,9 +44,7 @@ public class QuizService {
         return q;
     }
 
-    public void adaugaIntrebareLaQuiz(String idQuiz, Intrebare intrebare){
-        valideazaDateIntrare(idQuiz, "ID-ul quiz-ului este obligatoriu.");
-
+    public void adaugaIntrebareLaQuiz(long idQuiz, Intrebare intrebare){
         Quiz quiz = quizuri.get(idQuiz);
         if (quiz == null)
             throw new DateQuizInvalide("Quiz-ul cu ID-ul furnizat nu a fost gasit.");
@@ -58,7 +56,7 @@ public class QuizService {
         System.out.println("Succes: Intrebarea a fost adaugata cu succes la quiz");
     }
 
-    public void inregistreazaRezultatQuiz(String emailCursant, String idQuiz, double punctaj, LocalDate dataSustinere) throws DateUtilizatorInvalide, DateRezultatInvalide, EntitateNegasitaException {
+    public void inregistreazaRezultatQuiz(String emailCursant, long idQuiz, double punctaj, LocalDate dataSustinere) throws DateUtilizatorInvalide, DateRezultatInvalide, EntitateNegasitaException {
         if (punctaj < 0){
             throw  new DateRezultatInvalide("Punctajul nu poate fi negativ.");
         }
@@ -70,8 +68,6 @@ public class QuizService {
         if (!(u instanceof Cursant c)) {
             throw new EntitateNegasitaException("Cursantul cu email-ul " + emailCursant + " nu a fost gasit.");
         }
-
-        valideazaDateIntrare(idQuiz, "ID-ul quiz-ului este obligatoriu.");
 
         Quiz quiz = quizuri.get(idQuiz);
         if (quiz == null)

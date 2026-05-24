@@ -41,7 +41,7 @@ public class CursService {
         Profesor p = (Profesor) UtilizatorService.getInstance().getUtilizatorByEmail(email);
 
         Curs curs = new Curs(titlu, p);
-        cursuri.put(curs.getId(), curs);
+        cursuri.put(curs.getNume() + "|" + curs.getProfesor().getEmail(), curs);
         System.out.println("Succes: Cursul \"" + titlu + "\" predat de profesorul " + p.getNume() + " " + p.getPrenume().charAt(0) + ". a fost adaugat cu succes.");
     }
 
@@ -172,7 +172,7 @@ public class CursService {
             c.getCursuriInscrise().remove(curs);
         }
 
-        cursuri.remove(curs.getId());
+        cursuri.remove(curs.getNume() + "|" + curs.getProfesor().getEmail());
         System.out.println("Succes: Cursul \"" + titlu + "\" predat de profesorul " + p.getNume() + " " + p.getPrenume().charAt(0) + ". a fost eliminat din sistem.");
     }
 

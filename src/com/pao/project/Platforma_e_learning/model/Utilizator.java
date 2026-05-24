@@ -4,13 +4,12 @@ import java.util.Objects;
 import java.util.UUID;
 
 public abstract sealed class Utilizator permits Cursant, Profesor{
-    protected String id;
+    protected long id;
     protected String nume;
     protected String prenume;
     protected String email;
 
     public Utilizator(String prenume, String nume, String email){
-        this.id = UUID.randomUUID().toString();
         this.prenume = prenume;
         this.nume = nume;
         this.email = email;
@@ -28,7 +27,7 @@ public abstract sealed class Utilizator permits Cursant, Profesor{
 
     public String getEmail() {return email;}
 
-    public String getId() {return id;}
+    public long getId() {return id;}
 
     @Override
     public boolean equals(Object o){
@@ -55,4 +54,7 @@ public abstract sealed class Utilizator permits Cursant, Profesor{
                 '}';
     }
 
+    public void setId(long id) {
+        this.id=id;
+    }
 }

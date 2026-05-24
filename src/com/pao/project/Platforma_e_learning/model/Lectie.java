@@ -3,17 +3,16 @@ package com.pao.project.Platforma_e_learning.model;
 import java.util.UUID;
 
 public class Lectie {
-    private String id;
+    private long id;
     private String titlu;
     private String continut;
 
     public Lectie(String titlu, String continut){
-        this.id = UUID.randomUUID().toString();
         this.titlu = titlu;
         this.continut = continut;
     }
 
-    public String getId() { return id;}
+    public long getId() { return id;}
     public String getTitlu() { return titlu; }
     public void setTitlu(String titlu) { this.titlu = titlu; }
     public String getContinut() { return continut; }

@@ -6,14 +6,13 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Curs {
-    private String id;
+    private long id;
     private String nume;
     private Profesor profesor;
     private List<Lectie> lectii;
     private List<Quiz> quizuri;
 
     public Curs(String nume, Profesor profesor){
-        this.id = UUID.randomUUID().toString();
         this.nume = nume;
         this.profesor = profesor;
         this.lectii = new ArrayList<>();
@@ -30,7 +29,7 @@ public class Curs {
             this.quizuri.add(quiz);
     }
 
-    public String getId() { return id; }
+    public long getId() { return id; }
     public String getNume() { return nume; }
     public Profesor getProfesor() { return profesor; }
     public List<Lectie> getLectii() { return lectii; }
@@ -69,5 +68,9 @@ public class Curs {
                 "nume = '" + nume + '\'' +
                 ", nr. lectii = '" + getNrLectii() + '\'' +
                 ", nr. quiz-uri = '" + getNrQuizuri() + "'}";
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

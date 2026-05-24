@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class Intrebare {
-    private String id;
+    private long id;
     private String text;
     private List<Varianta> variante;
     private int punctaj;
 
     public Intrebare(String text, int punctaj){
-        this.id = UUID.randomUUID().toString();
         this.text = text;
         this.punctaj = punctaj;
         this.variante = new ArrayList<>();
@@ -23,7 +22,7 @@ public class Intrebare {
             this.variante.add(v);
     }
 
-    public String getId() { return id;}
+    public long getId() { return id;}
     public String getText() { return text; }
     public List<Varianta> getVariante() { return variante; }
     public int getPunctaj() { return punctaj; }

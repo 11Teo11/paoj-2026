@@ -36,7 +36,7 @@ public class DataSeeder {
             cs.adaugaLectieLaCurs("Algoritmi Avansati", "popescu.m@facultate.ro", "Probleme P vs NP", "Discutii despre problemele P si NP...");
             cs.adaugaLectieLaCurs("Algoritmi Avansati", "popescu.m@facultate.ro", "Vertex Cover si Traveling Salesman", "Algoritmi pentru problemele de vertex cover si traveling salesman...");
             cs.adaugaLectieLaCurs("Algoritmi Avansati", "tiriac.s@facultate.ro", "Algoritmi Genetici", "Cum functioneaza algoritmii genetici...");
-            cs.adaugaLectieLaCurs("Structuri Algebrice in informatica", "vasilescu.m@facultate.ro", "Grupuri si Ineluri", "Definitii si proprietati...");
+            cs.adaugaLectieLaCurs("Structuri Algebrice in Informatica", "vasilescu.m@facultate.ro", "Grupuri si Ineluri", "Definitii si proprietati...");
             cs.adaugaLectieLaCurs("Calcul Diferential si Integral", "ionescu.a@facultate.ro", "Derivate si Integrale", "Tehnici de calcul pentru derivate si integrale...");
             cs.adaugaLectieLaCurs("Calcul Diferential si Integral", "ionescu.a@facultate.ro", "Serii si Sume", "Converenta seriilor si tehnici de calcul pentru sume...");
 
@@ -44,7 +44,7 @@ public class DataSeeder {
             cs.inscrieCursant("cocea.a@student.ro", "tiriac.s@facultate.ro", "Structuri de Date");
             cs.inscrieCursant("cocea.a@student.ro", "tiriac.s@facultate.ro", "Algoritmi Avansati");
             cs.inscrieCursant("dumitru.e@student.ro", "popescu.m@facultate.ro", "Programare Avansata pe Obiecte in Java");
-            cs.inscrieCursant("dumitru.e@student.ro", "vasilescu.m@facultate.ro", "Structuri Algebrice in informatica");
+            cs.inscrieCursant("dumitru.e@student.ro", "vasilescu.m@facultate.ro", "Structuri Algebrice in Informatica");
             cs.inscrieCursant("comza.m@student.ro", "ionescu.a@facultate.ro", "Calcul Diferential si Integral");
             cs.inscrieCursant("comza.m@student.ro", "popescu.m@facultate.ro", "Algoritmi Avansati");
 

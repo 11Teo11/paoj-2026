@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class Quiz {
-    private String id;
+    private long id;
     private String titlu;
     private List<Intrebare> intrebari;
     private NivelDificultate dificultate;
 
     public Quiz(String titlu, NivelDificultate dificultate){
-        this.id = UUID.randomUUID().toString();
         this.titlu = titlu;
         this.intrebari = new ArrayList<>();
         this.dificultate = dificultate;
@@ -30,7 +29,7 @@ public class Quiz {
         return total;
     }
 
-    public String getId() { return id; }
+    public long getId() { return id; }
     public String getTitlu() { return titlu; }
     public List<Intrebare> getIntrebari() { return intrebari; }
     public NivelDificultate getDificultate() { return dificultate; }

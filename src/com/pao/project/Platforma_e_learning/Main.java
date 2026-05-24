@@ -7,12 +7,20 @@ import com.pao.project.Platforma_e_learning.service.CursService;
 import com.pao.project.Platforma_e_learning.service.QuizService;
 import com.pao.project.Platforma_e_learning.service.UtilizatorService;
 import com.pao.project.Platforma_e_learning.util.DataSeeder;
+import com.pao.project.Platforma_e_learning.util.DatabaseConnection;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args) {
+        try {
+            DatabaseConnection.getInstance();
+            System.out.println("Conexiune la baza de date reusita!");
+        } catch (Exception e) {
+            System.out.println("Eroare conexiune: " + e.getMessage());
+        }
+
         DataSeeder.populeazaDate();
 
         UtilizatorService us = UtilizatorService.getInstance();
@@ -97,7 +105,7 @@ public class Main{
                     }
                     case "11" -> {
                         System.out.print("email cursant: "); String ec = scanner.nextLine();
-                        System.out.print("      id quiz: "); String idq = scanner.nextLine();
+                        System.out.print("      id quiz: "); long idq = Long.parseLong(scanner.nextLine());
                         System.out.print("      punctaj: "); int pct = Integer.parseInt(scanner.nextLine());
                         qs.inregistreazaRezultatQuiz(ec, idq, pct, LocalDate.now());
                     }
