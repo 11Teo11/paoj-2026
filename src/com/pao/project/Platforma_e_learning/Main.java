@@ -439,7 +439,7 @@ public class Main {
                         audit.log("sterge_quiz");
                     }
                     case "22" -> {
-                        Curs curs = alegeCursDinLista(cs, scanner);
+                        Curs curs = alegeCursCuQuizuri(cs, qs, scanner);
                         if (curs == null) break;
                         Quiz quiz = alegeQuizDinLista(qs, curs.getId(), scanner);
                         if (quiz == null) break;
@@ -552,6 +552,23 @@ public class Main {
         System.out.print("Alege profesor: ");
         int ales = Integer.parseInt(scanner.nextLine()) - 1;
         return profesori.get(ales);
+    }
+
+    private static Curs alegeCursCuQuizuri(CursServiceBD cs, QuizServiceBD qs, Scanner scanner)
+            throws SQLException, IOException {
+        List<Curs> cursuri = cs.toateCursurile();
+        if (cursuri.isEmpty()) { System.out.println("Nu exista cursuri."); return null; }
+        System.out.println("\n--- Cursuri ---");
+        for (int i = 0; i < cursuri.size(); i++) {
+            int nrQuizuri = qs.quizuriCurs(cursuri.get(i).getId()).size();
+            System.out.println((i+1) + ". " + cursuri.get(i).getNume() +
+                    " | prof. " + cursuri.get(i).getProfesor().getNume() +
+                    " " + cursuri.get(i).getProfesor().getPrenume().charAt(0) + "." +
+                    " | " + nrQuizuri + " quizuri");
+        }
+        System.out.print("Alege curs: ");
+        int ales = Integer.parseInt(scanner.nextLine()) - 1;
+        return cursuri.get(ales);
     }
 
     private static void afiseazaMeniu() {
