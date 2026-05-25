@@ -25,12 +25,12 @@ public class LectieRepository implements Repository<Lectie, Long> {
     }
 
     @Override
-    public void save(Lectie lectie, long cursId) throws SQLException {
+    public void save(Lectie lectie) throws SQLException {
         String sql = "INSERT INTO lectie (titlu, continut, curs_id) VALUES (?, ?, ?)";
         try (PreparedStatement ps = getConn().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, lectie.getTitlu());
             ps.setString(2, lectie.getContinut());
-            ps.setLong(3, cursId);
+            ps.setLong(3, lectie.getCursId());
             ps.executeUpdate();
             try (ResultSet keys = ps.getGeneratedKeys()) {
                 if (keys.next()) lectie.setId(keys.getLong(1));
@@ -38,11 +38,6 @@ public class LectieRepository implements Repository<Lectie, Long> {
         } catch (IOException e) {
             throw new SQLException(e);
         }
-    }
-
-    @Override
-    public void save(Lectie lectie) throws SQLException {
-        throw new UnsupportedOperationException("Foloseste save(lectie, cursId)");
     }
 
     @Override

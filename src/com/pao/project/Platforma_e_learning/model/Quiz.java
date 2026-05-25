@@ -10,6 +10,7 @@ public class Quiz {
     private String titlu;
     private List<Intrebare> intrebari;
     private NivelDificultate dificultate;
+    private long cursId;
 
     public Quiz(String titlu, NivelDificultate dificultate){
         this.titlu = titlu;
@@ -33,4 +34,7 @@ public class Quiz {
     public String getTitlu() { return titlu; }
     public List<Intrebare> getIntrebari() { return intrebari; }
     public NivelDificultate getDificultate() { return dificultate; }
+    public void setId(long id) {this.id = id;}
+    public long getCursId() { return cursId; }
+    public void setCursId(long cursId) { this.cursId = cursId; }
 }

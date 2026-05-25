@@ -10,6 +10,7 @@ public class Intrebare {
     private String text;
     private List<Varianta> variante;
     private int punctaj;
+    private long quizId;
 
     public Intrebare(String text, int punctaj){
         this.text = text;
@@ -26,4 +27,7 @@ public class Intrebare {
     public String getText() { return text; }
     public List<Varianta> getVariante() { return variante; }
     public int getPunctaj() { return punctaj; }
+    public void setId(long id) {this.id = id;}
+    public long getQuizId() { return quizId; }
+    public void setQuizId(long quizId) { this.quizId = quizId; }
 }

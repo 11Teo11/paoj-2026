@@ -25,12 +25,12 @@ public class IntrebareRepository implements Repository<Intrebare, Long> {
     }
 
     @Override
-    public void save(Intrebare intrebare, long quizId) throws SQLException {
+    public void save(Intrebare intrebare) throws SQLException {
         String sql = "INSERT INTO intrebare (text, punctaj, quiz_id) VALUES (?, ?, ?)";
         try (PreparedStatement ps = getConn().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, intrebare.getText());
             ps.setInt(2, intrebare.getPunctaj());
-            ps.setLong(3, quizId);
+            ps.setLong(3, intrebare.getQuizId());
             ps.executeUpdate();
             try (ResultSet keys = ps.getGeneratedKeys()) {
                 if (keys.next()) intrebare.setId(keys.getLong(1));
@@ -38,11 +38,6 @@ public class IntrebareRepository implements Repository<Intrebare, Long> {
         } catch (IOException e) {
             throw new SQLException(e);
         }
-    }
-
-    @Override
-    public void save(Intrebare intrebare) throws SQLException {
-        throw new UnsupportedOperationException("Foloseste save(intrebare, quizId)");
     }
 
     @Override

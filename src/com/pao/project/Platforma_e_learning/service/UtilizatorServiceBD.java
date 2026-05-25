@@ -6,9 +6,11 @@ import com.pao.project.Platforma_e_learning.model.Profesor;
 import com.pao.project.Platforma_e_learning.model.TipUtilizator;
 import com.pao.project.Platforma_e_learning.model.Utilizator;
 import com.pao.project.Platforma_e_learning.repository.UtilizatorRepository;
+import com.pao.project.Platforma_e_learning.util.DatabaseConnection;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,6 +71,56 @@ public class UtilizatorServiceBD {
 
     public Optional<Utilizator> getByEmail(String email) throws SQLException, IOException {
         return repo.findByEmail(email);
+    }
+
+    public List<String> topCursantiDupaPunctajMediu() throws SQLException, IOException {
+        String sql = """
+            SELECT u.nume, u.prenume, AVG(r.valoare) AS punctaj_mediu
+            FROM utilizator u
+            JOIN rezultat r ON r.cursant_id = u.id
+            WHERE u.tip = 'CURSANT'
+            GROUP BY u.id, u.nume, u.prenume
+            ORDER BY punctaj_mediu DESC
+            """;
+        List<String> rezultate = new ArrayList<>();
+        try (PreparedStatement ps = DatabaseConnection.getInstance().getConnection().prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            int loc = 1;
+            while (rs.next()) {
+                rezultate.add(loc + ". " + rs.getString("nume") + " " +
+                        rs.getString("prenume") +
+                        " | punctaj mediu: " + String.format("%.2f", rs.getDouble("punctaj_mediu")));
+                loc++;
+            }
+        } catch (IOException e) {
+            throw new SQLException(e);
+        }
+        return rezultate;
+    }
+
+    public List<String> topCursantiDupaNrQuizuri() throws SQLException, IOException {
+        String sql = """
+            SELECT u.nume, u.prenume, COUNT(r.quiz_id) AS nr_quizuri
+            FROM utilizator u
+            JOIN rezultat r ON r.cursant_id = u.id
+            WHERE u.tip = 'CURSANT'
+            GROUP BY u.id, u.nume, u.prenume
+            ORDER BY nr_quizuri DESC
+            """;
+        List<String> rezultate = new ArrayList<>();
+        try (PreparedStatement ps = DatabaseConnection.getInstance().getConnection().prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            int loc = 1;
+            while (rs.next()) {
+                rezultate.add(loc + ". " + rs.getString("nume") + " " +
+                        rs.getString("prenume") +
+                        " | quizuri completate: " + rs.getLong("nr_quizuri"));
+                loc++;
+            }
+        } catch (IOException e) {
+            throw new SQLException(e);
+        }
+        return rezultate;
     }
 
 }

@@ -6,6 +6,7 @@ public class Varianta {
     private long id;
     private String text;
     private boolean corecta;
+    private long intrebareId;
 
     public Varianta(String text, boolean corecta){
         this.text = text;
@@ -16,4 +17,7 @@ public class Varianta {
     public String getText() { return text; }
     public void setText(String text) { this.text = text; }
     public boolean esteCorecta() { return corecta; }
+    public void setId(long id) {this.id = id;}
+    public long getIntrebareId() { return intrebareId; }
+    public void setIntrebareId(long intrebareId) { this.intrebareId = intrebareId; }
 }

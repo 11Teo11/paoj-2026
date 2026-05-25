@@ -16,7 +16,6 @@ import java.util.Optional;
 
 public class CursServiceBD {
     private static CursServiceBD instance;
-    private final CursRepository repo = new CursRepository();
     private final CursRepository cursRepo = new CursRepository();
     private final LectieRepository lectieRepo = new LectieRepository();
     private final InscriereRepository inscriereRepo = new InscriereRepository();
@@ -117,7 +116,8 @@ public class CursServiceBD {
         if (cursRepo.findById(cursId).isEmpty())
             throw new SQLException("Cursul cu id=" + cursId + " nu exista.");
         Lectie l = new Lectie(titlu, continut);
-        lectieRepo.save(l, cursId);
+        l.setCursId(cursId);
+        lectieRepo.save(l);
         System.out.println("Lectie adaugata cu succes. ID= " + l.getId());
     }
 

@@ -17,7 +17,12 @@ public class CursRepository implements Repository<Curs, Long> {
     }
 
     private Curs mapRow(ResultSet rs) throws SQLException {
-        Profesor p = new Profesor("", "", rs.getString("profesor_email"), "");
+        Profesor p = new Profesor(
+                rs.getString("prof_prenume"),
+                rs.getString("prof_nume"),
+                rs.getString("profesor_email"),
+                ""
+        );
         p.setId(rs.getLong("profesor_id"));
         Curs c = new Curs(rs.getString("nume"), p);
         c.setId(rs.getLong("id"));
@@ -41,7 +46,8 @@ public class CursRepository implements Repository<Curs, Long> {
 
     @Override
     public Optional<Curs> findById(Long id) throws SQLException {
-        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email " +
+        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email, " +
+                "u.nume as prof_nume, u.prenume as prof_prenume " +
                 "FROM curs c JOIN utilizator u ON c.profesor_id = u.id " +
                 "WHERE c.id = ?";
         try (PreparedStatement ps = getConn().prepareStatement(sql)) {
@@ -56,7 +62,8 @@ public class CursRepository implements Repository<Curs, Long> {
     }
 
     public List<Curs> findByProfesorId(long profesorId) throws SQLException {
-        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email " +
+        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email, " +
+                "u.nume as prof_nume, u.prenume as prof_prenume " +
                 "FROM curs c JOIN utilizator u ON c.profesor_id = u.id " +
                 "WHERE c.profesor_id = ? ORDER BY c.nume";
         List<Curs> list = new ArrayList<>();
@@ -72,7 +79,8 @@ public class CursRepository implements Repository<Curs, Long> {
     }
 
     public List<Curs> findByCursantId(long cursantId) throws SQLException {
-        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email " +
+        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email, " +
+                "u.nume as prof_nume, u.prenume as prof_prenume " +
                 "FROM curs c " +
                 "JOIN utilizator u ON c.profesor_id = u.id " +
                 "JOIN inscriere i ON i.curs_id = c.id " +
@@ -91,7 +99,8 @@ public class CursRepository implements Repository<Curs, Long> {
 
     @Override
     public List<Curs> findAll() throws SQLException {
-        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email " +
+        String sql = "SELECT c.id, c.nume, c.profesor_id, u.email as profesor_email, " +
+                "u.nume as prof_nume, u.prenume as prof_prenume " +
                 "FROM curs c JOIN utilizator u ON c.profesor_id = u.id " +
                 "ORDER BY c.id";
         List<Curs> list = new ArrayList<>();
